@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client=TavilyClient(
-api_key=os.getenv("TAVILY_API_KEY")
+api_key=os.getenv("TRAVILY_API_KEY")
 )
 
-def trvily_search(query):
+def travily_search(query):
     response = client.search(
         query=query,
         max_results=5
