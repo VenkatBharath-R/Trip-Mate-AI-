@@ -9,6 +9,11 @@ function setLoading(isLoading) {
     const sendBtn = document.getElementById("sendBtn");
     const btnText = document.getElementById("btnText");
     const btnLoader = document.getElementById("btnLoader");
+    const buttonArrow = document.querySelector(".button-arrow");
+
+if (buttonArrow) {
+    buttonArrow.classList.toggle("hidden", isLoading);
+}
 
     sendBtn.disabled = isLoading;
 

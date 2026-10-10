@@ -1,18 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TripMate AI</title>
+    <meta name="theme-color" content="#eaf7ff">
+    <meta name="description" content="Plan your perfect trip with TripMate AI. Generate personalized travel itineraries with AI-powered travel planning.">
 
-    <link rel="stylesheet" href="/static/style.css">
+    <title>TripMate AI | Your Next Adventure Starts Here</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/style.css?v=2">
 </head>
 
 <body>
 
-    <div class="page-bg">
+    <!-- Decorative background -->
+    <div class="page-bg" aria-hidden="true">
         <div class="gradient-circle circle-1"></div>
         <div class="gradient-circle circle-2"></div>
         <div class="gradient-circle circle-3"></div>
@@ -20,27 +28,61 @@
 
     <main class="app-container">
 
+        <!-- Navigation -->
+        <nav class="navbar">
+            <a href="/" class="brand" aria-label="TripMate AI home">
+                <span class="brand-icon">✈</span>
+                <span>TripMate<span class="brand-highlight">AI</span></span>
+            </a>
+
+            <div class="nav-right">
+                <span class="nav-tag">
+                    <span class="nav-status-dot"></span>
+                    AI TRAVEL PLANNER
+                </span>
+            </div>
+        </nav>
+
+        <!-- Main landing page -->
         <section class="hero-section">
+
             <div class="badge">
-                ✈️ TripMate AI — A Multi-Agent Travel Planner with LangGraph
+                <span class="badge-icon">✦</span>
+                Your personal AI travel companion
             </div>
 
             <h1>
-                Plan Your Perfect Trip with AI
+                The world is waiting.<br>
+                <span class="hero-highlight">Let's explore it.</span>
             </h1>
 
-            <p>
-                Search flights, discover hotels, and generate a complete travel itinerary using a multi-agent LangGraph system.
+            <p class="hero-description">
+                Dream it. Plan it. Explore it.
+                Let AI build your perfect getaway, from flights and stays
+                to unforgettable experiences.
             </p>
+
+            <div class="hero-highlights">
+                <span><span class="highlight-icon">✈</span> Flight discovery</span>
+                <span><span class="highlight-icon">⌂</span> Hotel suggestions</span>
+                <span><span class="highlight-icon">✦</span> Smart itineraries</span>
+            </div>
+
         </section>
 
-        <section class="planner-card">
+        <!-- Trip planner -->
+        <section class="planner-card" aria-labelledby="plannerTitle">
 
             <div class="card-header">
-                <div>
-                    <h2>Where do you want to go?</h2>
+                <div class="card-heading">
+                    <span class="section-eyebrow">YOUR NEXT ADVENTURE</span>
+
+                    <h2 id="plannerTitle">
+                        Where do you want to go?
+                    </h2>
+
                     <p>
-                        Example: Plan a complete 7 days Japan trip from Bangladesh under 2 lakhs.
+                        Tell us what you're dreaming of. We'll handle the planning.
                     </p>
                 </div>
 
@@ -51,51 +93,126 @@
             </div>
 
             <div class="input-area">
+
+                <label class="input-label" for="userInput">
+                    Describe your dream trip
+                </label>
+
                 <textarea
                     id="userInput"
-                    placeholder="Plan a complete 7 days Japan trip including flights, hotels and sightseeing under 2 lakhs..."
+                    rows="4"
+                    maxlength="5000"
+                    aria-label="Describe your travel plans"
+                    placeholder="e.g. Plan a 7-day Japan trip from India under ₹2,00,000, including flights, hotels, food and sightseeing..."
                 ></textarea>
 
-                <button id="sendBtn" onclick="sendMessage()">
-                    <span id="btnText">Generate Plan</span>
+                <div class="input-footer">
+                    <span class="input-hint">
+                        ✨ Be specific for a more personalized itinerary
+                    </span>
+
+                    <span class="character-count" id="characterCount">
+                        0 / 5000
+                    </span>
+                </div>
+
+                <button
+                    id="sendBtn"
+                    class="generate-btn"
+                    type="button"
+                    onclick="sendMessage()"
+                >
+                    <span id="btnText">Plan My Adventure</span>
+                    <span class="button-arrow" aria-hidden="true">↗</span>
                     <span id="btnLoader" class="loader hidden"></span>
                 </button>
+
             </div>
 
-            <div class="quick-prompts">
-                <button onclick="setPrompt('Plan a complete 7 days Japan trip from Bangladesh including flights, hotels and sightseeing under 2 lakhs.')">
-                    Japan Trip
-                </button>
+            <!-- Quick travel prompts -->
+            <div class="quick-prompts-section">
 
-                <button onclick="setPrompt('Plan a 5 days Dubai trip from Dhaka with flights, hotels and sightseeing.')">
-                    Dubai Trip
-                </button>
+                <p class="quick-prompts-label">
+                    NEED SOME INSPIRATION?
+                </p>
 
-                <button onclick="setPrompt('Plan a 7 days Thailand trip from Bangladesh with budget hotels and sightseeing.')">
-                    Thailand Trip
-                </button>
+                <div class="quick-prompts">
 
-                <button onclick="setPrompt('Give me all country flight info.')">
-                    Global Flights
-                </button>
+                    <button
+                        type="button"
+                        class="prompt-chip"
+                        onclick="setPrompt('Plan a complete 7 days Japan trip from India including flights, hotels and sightseeing under ₹2,00,000.')"
+                    >
+                        <span>🇯🇵</span> Japan
+                        <span class="chip-arrow">↗</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="prompt-chip"
+                        onclick="setPrompt('Plan a 5 days Dubai trip from India with flights, hotels, sightseeing and a budget breakdown.')"
+                    >
+                        <span>🏙️</span> Dubai
+                        <span class="chip-arrow">↗</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="prompt-chip"
+                        onclick="setPrompt('Plan a 7 days Thailand trip from India with budget hotels, flights, beaches and sightseeing.')"
+                    >
+                        <span>🏝️</span> Thailand
+                        <span class="chip-arrow">↗</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="prompt-chip"
+                        onclick="setPrompt('Give me available global flight information and help me explore flight options.')"
+                    >
+                        <span>🌍</span> Global Flights
+                        <span class="chip-arrow">↗</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="planner-footer">
+                <span>✦ Powered by intelligent AI agents</span>
+                <span>Made for curious explorers</span>
             </div>
 
         </section>
 
-        <section id="resultSection" class="result-section hidden">
+        <!-- Existing AI travel plan results -->
+        <section
+            id="resultSection"
+            class="result-section hidden"
+            aria-live="polite"
+        >
 
             <div class="result-header">
                 <div>
+                    <span class="section-eyebrow">YOUR JOURNEY, PLANNED</span>
                     <h2>Your AI Travel Plan</h2>
                     <p id="threadInfo">Thread ID: -</p>
                 </div>
 
                 <div class="result-actions">
-                    <button class="copy-btn" onclick="copyResult()">
+                    <button
+                        type="button"
+                        class="copy-btn"
+                        onclick="copyResult()"
+                    >
                         Copy
                     </button>
 
-                    <button class="download-btn" onclick="downloadPDF()">
+                    <button
+                        type="button"
+                        class="download-btn"
+                        onclick="downloadPDF()"
+                    >
                         Download PDF
                     </button>
                 </div>
@@ -108,12 +225,20 @@
 
         </section>
 
-        <section id="errorBox" class="error-box hidden"></section>
+        <!-- Existing error display -->
+        <section
+            id="errorBox"
+            class="error-box hidden"
+            role="alert"
+        ></section>
 
     </main>
 
-    <footer>
-        Built with FastAPI, LangGraph, Groq, PostgreSQL, Tavily and AviationStack
+    <footer class="site-footer">
+        <p>Made for explorers, powered by AI <span>✈</span></p>
+        <p class="footer-tech">
+            FastAPI · LangGraph · Groq · PostgreSQL · Tavily · AviationStack
+        </p>
     </footer>
 
     <!-- Markdown Renderer -->
@@ -122,8 +247,25 @@
     <!-- PDF Download Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <!-- Your Custom JS -->
+    <!-- Existing application JavaScript -->
     <script src="/static/script.js"></script>
+
+    <!-- Character counter for the travel prompt -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const input = document.getElementById("userInput");
+            const counter = document.getElementById("characterCount");
+
+            if (!input || !counter) return;
+
+            function updateCharacterCount() {
+                counter.textContent = input.value.length + " / 5000";
+            }
+
+            input.addEventListener("input", updateCharacterCount);
+            updateCharacterCount();
+        });
+    </script>
 
 </body>
 </html>
